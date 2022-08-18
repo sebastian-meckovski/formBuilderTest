@@ -1,0 +1,11 @@
+.dx-filterbuilder-item-value-text{
+    max-width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // white-space: nowrap;
+}
+
+.dx-filterbuilder-group-item {
+    display: flex !important;
+    align-items: center !important;
+}
