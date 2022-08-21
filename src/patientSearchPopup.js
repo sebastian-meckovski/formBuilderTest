@@ -22,13 +22,12 @@ export default function PatientSearchPopup(props){
         });
 
         props.setDisplaySelectedPatients(names)
-        props.handleUpdatePatients(patients)
+        props.setSelectedPatients(patients)
         props.setDialupPopupVisible(false)
     }
 
     function handleOnInitialized(e){
         setDataGrid(e.component);
-        console.log(dataGrid)
     }
 
     function RenderContent(){       

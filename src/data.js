@@ -1,25 +1,3 @@
-export const filter = [
-  ['Category', 'anyof', ['Automation', 'Monitors']],
-  'or',
-  [
-    ['Category', '=', 'Televisions'],
-    'and',
-    ['Price', 'between', [2000, 4000]],
-  ],
-];
-export const categories = [
-  'Video Players',
-  'Televisions',
-  'Monitors',
-  'Projectors',
-  'Automation',
-  'Automation1',
-  'Automation2',
-  'Automation3',
-  'Automation5',
-];
-export const groupOperations = ['and', 'or'];
-
 export const fields = [{
   dataField: 'Name',
 }, {
@@ -37,14 +15,11 @@ export const fields = [{
   caption: 'TextTest',
 }, {
 }, {
-  dataField: 'DateTst',
+  dataField: 'DateTest',
   dataType: 'date',
-  caption: 'DateTEst',
+  caption: 'DateTest',
 }, {
   dataField: 'Patients',
   filterOperations: ['=', 'anyof'],
-  lookup: {
-    dataSource: categories,
-  },
   caption: 'Patients'
 }];

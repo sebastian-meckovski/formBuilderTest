@@ -19,8 +19,6 @@ export default function App() {
 
     const [dialupPopupVisible, setDialupPopupVisible] = useState(false);
 
-
-
     function updateTexts(e) {
       setTextValue({
         filterText: formatValue(e.component.option('value')),
@@ -44,16 +42,12 @@ export default function App() {
         )
     }
 
-    function handleUpdatePatients(patients){
-      setSelectedPatients(patients)
-    }
-    
     return (
       <div>
         <FilterBuilder
           fields={fields}
           onInitialized={updateTexts}
-          groupOperations={groupOperations}
+          groupOperations={['and', 'or']}
           onValueChanged={onValueChanged}
         >
           <CustomOperation
@@ -70,9 +64,10 @@ export default function App() {
           setDialupPopupVisible={setDialupPopupVisible}
           dialupPopupVisible={dialupPopupVisible}
           selectedPatients={selectedPatients}
-          handleUpdatePatients={handleUpdatePatients}
+          setSelectedPatients={setSelectedPatients}
           setDisplaySelectedPatients={setDisplaySelectedPatients}
         />
+        
         <div className="results">
           <div>
             <b>filterText</b>
@@ -89,7 +84,6 @@ export default function App() {
 }
 
 function calculateFilterExpression(filterValue, field) {
-
   return filterValue && filterValue.length
     && Array.prototype.concat.apply([], filterValue.map((value) => [[field.dataField, '=', value], 'or'])).slice(0, -1);
 }

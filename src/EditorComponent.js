@@ -1,35 +1,41 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import TagBox from 'devextreme-react/tag-box';
+import { dummyPatients } from './dummyPatients';
 
-export function EditorComponent(props){
+export function EditorComponent(props){ 
 
+  const onSelectionChanged = useCallback((e) => {
+    let selectedItems = e.component.option("selectedItems");
+    let val = [];
+  
+    // create an array of strings based on "names" from selectedItems option
+    selectedItems.forEach((x) => {
+      val.push(x.name);
+    });
 
+    // return an array of strings in setValue function
+    props.data.setValue(val);
+  }, []);
 
-  function onValueChanged(e) {
-    props.data.setValue(e.value && e.value.length ? e.value : null);
-  }
-
-
-  function handleOpen(){
-    const dropdown = document.querySelector('.dx-selectbox-popup-wrapper .dx-overlay-content');
-    dropdown.style.display = 'none';
-    props.setDialupPopupVisible(prev => !prev)
-  }
-
-  function handleonValueChanged(e){
-    // console.log('handling on valueChanged')
-    // console.log(e)
-  }
+  const dropDownOptions = useMemo(() => {
+    return {
+      onShowing: (e) => {
+        e.cancel = true;
+        props.setDialupPopupVisible((pr) => !pr);
+      }
+    };
+  }, []);
 
   return (
     <TagBox
-      // defaultValue={props.data.value}
-      items={props.displaySelectedPatients}
-      onValueChanged={onValueChanged}
+      items={dummyPatients}
+      onSelectionChanged={onSelectionChanged}
+      value={props.selectedPatients}
+      dropDownOptions={dropDownOptions}
+
+
+      displayExpr={'name'}
       width="200px"
-      onOpened={handleOpen}
-      onValueChange={handleonValueChanged}
-      value={props.displaySelectedPatients}
     />
   );
 }
