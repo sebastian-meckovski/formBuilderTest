@@ -2,22 +2,19 @@ import 'devextreme/dist/css/dx.light.css';
 import './styles.scss'
 import React, { useState } from 'react';
 import FilterBuilder, { CustomOperation } from 'devextreme-react/filter-builder';
-import { fields, groupOperations } from './data.js';
+import { fields } from './data.js';
 import { formatValue } from './helpers.js';
 import { EditorComponent } from './EditorComponent.js';
-import PatientSearchPopup from './patientSearchPopup';
 
 
 export default function App() {
 
-    const [selectedPatients, setSelectedPatients] = useState();
-    const [displaySelectedPatients, setDisplaySelectedPatients] = useState();
+    // const [selectedPatients, setSelectedPatients] = useState();
+    // const [displaySelectedPatients, setDisplaySelectedPatients] = useState();
     const [textValue, setTextValue] = useState({
       filterText: '',
       dataSourceText: ''
     });
-
-    const [dialupPopupVisible, setDialupPopupVisible] = useState(false);
 
     function updateTexts(e) {
       setTextValue({
@@ -32,12 +29,14 @@ export default function App() {
     }
 
     function renderEditor(props) {
+        console.log('rendering editor component')
         return(
             <EditorComponent
-                setDialupPopupVisible={setDialupPopupVisible}
-                selectedPatients={selectedPatients}
-                data={props}
-                displaySelectedPatients={displaySelectedPatients}
+                data={props}  
+                // selectedPatients={selectedPatients}
+                // displaySelectedPatients={displaySelectedPatients}
+                // setSelectedPatients={setSelectedPatients}
+                // setDisplaySelectedPatients={setDisplaySelectedPatients}
             />
         )
     }
@@ -59,15 +58,6 @@ export default function App() {
           />
           </FilterBuilder>
 
-        <PatientSearchPopup
-          visible={dialupPopupVisible}
-          setDialupPopupVisible={setDialupPopupVisible}
-          dialupPopupVisible={dialupPopupVisible}
-          selectedPatients={selectedPatients}
-          setSelectedPatients={setSelectedPatients}
-          setDisplaySelectedPatients={setDisplaySelectedPatients}
-        />
-        
         <div className="results">
           <div>
             <b>filterText</b>
