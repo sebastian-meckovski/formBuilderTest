@@ -16,13 +16,13 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '8.0' # Specify your .NET version
+        dotnet-version: '8.0.x'
 
-    - name: Install dependencies
-      run: dotnet restore
+    - name: Restore dependencies
+      run: dotnet restore formBuilderTest.sln
 
     - name: Build the solution
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build formBuilderTest.sln --configuration Release
 
     - name: Run tests
-      run: dotnet test AWSLambdaTest.Tests --no-build --verbosity normal
+      run: dotnet test AWSLambdaTest.Tests/AWSLambdaTest.Tests.csproj --configuration Release --verbosity normal
