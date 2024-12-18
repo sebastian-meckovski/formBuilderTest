@@ -25,4 +25,5 @@ jobs:
       run: dotnet build AWSLambdaTest.sln --configuration Release
 
     - name: Run tests
-      run: dotnet test AWSLambdaTest.Tests/AWSLambdaTest.Tests.csproj --configuration Release --verbosity normal
+      run: dotnet test AWSLambdaTest.Tests/AWSLambdaTest.Tests.csproj --configuration Release --verbosity minimal
+    
