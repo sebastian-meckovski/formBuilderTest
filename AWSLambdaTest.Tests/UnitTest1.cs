@@ -27,6 +27,7 @@ namespace AWSLambdaTest.Tests
         [InlineData(0, 0)]
         [InlineData(-4, -12)]
         [InlineData(-5, -1)]
+        [InlineData(-5, 1)]
         public void TestFunctionHandler_MultipleCases(int inputNumber, int expectedResult)
         {
             // Arrange
